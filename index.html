@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>心雨</title>
+    <style>
+        body,html{
+            height: 100%;
+            background-color:#090909f2;
+        }
+        .content{
+            position: relative;
+            height: 100%;
+            background-color: #090909f2;
+            overflow: hidden;
+        }
+        .item{
+            opacity: 0;
+            position: absolute;
+            animation: drops 1s cubic-bezier(0.31, 0.28, 0.34, 0.34) infinite;
+            width: 250px;
+            height: 250px;
+            background: url("img/heart.png") no-repeat;
+            background-size: auto 250px;
+        }
+        @keyframes drops {
+            0%{
+                opacity: 0;
+            }
+            20%{
+                opacity: 1;
+            }
+            90%{
+                opacity: 1;
+            }
+            100%{
+                opacity: 0;
+                transform: translate3d(10px,100vh,-10px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <div class="item"></div>
+    </div>
+<script src="js/jquery-1.9.1.min.js"></script>
+<script>
+    var content=$(".content");
+    var initNum=0;
+    for(var i=0;i<30;i++){
+        var left=(Math.floor(Math.random()*10+10));
+        var delay=(Math.floor(Math.random()*120+10))/10;
+        console.log(left);
+        initNum+=left;
+        var div=$('<div/>').addClass('item').css({
+            "left":initNum+"%",
+            "top":left+"%",
+            "animation-delay":delay+"s"
+        });
+        content.append(div);
+    }
+</script>
+</body>
+</html>
